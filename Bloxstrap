@@ -1,6 +1,6 @@
 -- close source in 10/4
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_3", Icon = "rbxassetid://90669214159992", Duration = 10})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684-Build_2", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
@@ -47,8 +47,29 @@ capture.Image = "rbxassetid://121273610000891"
 emoteWeel.Image = "rbxassetid://78361502496826"
 
 if playerList then
-game:GetService("CoreGui").PlayerList.Children.OffsetFrame.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame.DismissButton.imageLabel.Image = "rbxassetid://127559608608093"
-r(game:GetService("CoreGui").PlayerList.Children.OffsetFrame.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame.DismissButton.imageLabel)
+    local offset = playerList:FindFirstChild("Children") and playerList.Children:FindFirstChild("OffsetFrame")
+    local body = playerList:FindFirstChild("Children") and playerList.Children:FindFirstChild("BodyBackground")
+    
+    local dismissButton
+    if offset then
+        dismissButton = offset:FindFirstChild("PlayerScrollList") and
+                        offset.PlayerScrollList:FindFirstChild("SizeOffsetFrame") and
+                        offset.PlayerScrollList.SizeOffsetFrame:FindFirstChild("TopRoundedRect") and
+                        offset.PlayerScrollList.SizeOffsetFrame.TopRoundedRect:FindFirstChild("DismissIconFrame") and
+                        offset.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame:FindFirstChild("DismissButton")
+    end
+
+    local closeButton
+    if body then
+        closeButton = body:FindFirstChild("CloseButton")
+    end
+
+    local targetButton = dismissButton or closeButton
+
+    if targetButton and targetButton:FindFirstChild("imageLabel") then
+        targetButton.imageLabel.Image = "rbxassetid://127559608608093"
+        r(targetButton.imageLabel)
+    end
 end
 
 if checkVNG then
