@@ -1,6 +1,6 @@
 -- close source in 10/4
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684-Build_2", Icon = "rbxassetid://90669214159992", Duration = 10})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_3", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
@@ -19,9 +19,7 @@ local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.Sett
 local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
 local playerList = game:GetService("CoreGui"):FindFirstChild("PlayerList")
 local checkVNG = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
-local emoteWeel = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundImage
-local emoteLine = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.Selection.SelectionEffect.SelectedLine
-local emoteSelect = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundGradient.SelectionGradient.SelectedGradient
+local checkEmote = game:GetService("CoreGui").RobloxGui:FindFirstChild("EmotesMenu")
 
 chat.Image = "rbxassetid://98655444538470"
 iconChatHit.MouseButton1Click:Connect(function()
@@ -44,7 +42,6 @@ players.Image = "rbxassetid://76913423615046"
 help.Image = "rbxassetid://95611432162764"
 report.Image = "rbxassetid://78743340755719"
 capture.Image = "rbxassetid://121273610000891"
-emoteWeel.Image = "rbxassetid://78361502496826"
 
 if playerList then
     local offset = playerList:FindFirstChild("Children") and playerList.Children:FindFirstChild("OffsetFrame")
@@ -77,7 +74,17 @@ game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetCh
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Roblox VNG", Text = "Phiên bản này sẽ có lỗi xảy ra.", Icon = "rbxassetid://90669214159992", Duration = 10})
 end
 
-r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture) r(emoteWeel)
+if checkEmote then
+local emoteWeel = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundImage
+local emoteLine = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.Selection.SelectionEffect.SelectedLine
+local emoteSelect = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundGradient.SelectionGradient.SelectedGradient
+r(emoteWeel)
+emoteLine.Image = "rbxassetid://98781576372898"
+emoteSelect.Image = "rbxassetid://135889668421234"
+emoteWeel.Image = "rbxassetid://78361502496826"
+end
+
+r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
 
 -- ⭐⭐⭐⭐⭐ ScrollingFrame    ⭐⭐⭐⭐⭐
 
@@ -170,9 +177,6 @@ end)
 
 game.RunService.Heartbeat:Connect(function()
 r(chat)
-
-emoteLine.Image = "rbxassetid://98781576372898"
-emoteSelect.Image = "rbxassetid://135889668421234"
 
 local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
 if gameInvite then
