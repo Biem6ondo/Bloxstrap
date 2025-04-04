@@ -1,6 +1,6 @@
--- close soure in 10/4
+-- close source in 10/4
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684-Build_2", Icon = "rbxassetid://90669214159992", Duration = 10})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_3", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
@@ -19,6 +19,9 @@ local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.Sett
 local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
 local playerList = game:GetService("CoreGui"):FindFirstChild("PlayerList")
 local checkVNG = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
+local emoteWeel = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundImage
+local emoteLine = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.Selection.SelectionEffect.SelectedLine
+local emoteSelect = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundGradient.SelectionGradient.SelectedGradient
 
 chat.Image = "rbxassetid://98655444538470"
 iconChatHit.MouseButton1Click:Connect(function()
@@ -41,6 +44,7 @@ players.Image = "rbxassetid://76913423615046"
 help.Image = "rbxassetid://95611432162764"
 report.Image = "rbxassetid://78743340755719"
 capture.Image = "rbxassetid://121273610000891"
+emoteWeel.Image = "rbxassetid://78361502496826"
 
 if playerList then
 game:GetService("CoreGui").PlayerList.Children.OffsetFrame.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame.DismissButton.imageLabel.Image = "rbxassetid://127559608608093"
@@ -52,7 +56,7 @@ game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetCh
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Roblox VNG", Text = "Phiên bản này sẽ có lỗi xảy ra.", Icon = "rbxassetid://90669214159992", Duration = 10})
 end
 
-r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
+r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture) r(emoteWeel)
 
 -- ⭐⭐⭐⭐⭐ ScrollingFrame    ⭐⭐⭐⭐⭐
 
@@ -71,32 +75,6 @@ end)
 
 -- ⭐⭐⭐⭐⭐     Other     ⭐⭐⭐⭐⭐
 
-local function r(imageObject)
-    imageObject.ImageRectOffset = Vector2.new(0, 0)
-    imageObject.ImageRectSize = Vector2.new(0, 0)
-end
-
-local chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
-local menuMenu = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Overflow
-local menuClose = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Close
-local rbx = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon
-local set = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.GameSettingsTab.TabLabel.Icon
-local players = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.PlayersTab.TabLabel.Icon
-local help = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.HelpTab.TabLabel.Icon
-local report = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.ReportAbuseTab.TabLabel.Icon
-local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.CapturesTab.TabLabel.Icon
-
-chat.Image = "rbxassetid://98655444538470"
-menuMenu.Image = "rbxassetid://98028586888500"
-menuClose.Image = "rbxassetid://127559608608093"
-rbx.Image = "rbxassetid://90669214159992"
-set.Image = "rbxassetid://98893548614397"
-players.Image = "rbxassetid://76913423615046"
-help.Image = "rbxassetid://95611432162764"
-report.Image = "rbxassetid://78743340755719"
-capture.Image = "rbxassetid://121273610000891"
-
-r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
 
 task.spawn(function()
     while task.wait(0.2) do
@@ -171,6 +149,10 @@ end)
 
 game.RunService.Heartbeat:Connect(function()
 r(chat)
+
+emoteLine.Image = "rbxassetid://98781576372898"
+emoteSelect.Image = "rbxassetid://135889668421234"
+
 local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
 if gameInvite then
 game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton.Image = "rbxassetid://127559608608093"
@@ -199,3 +181,26 @@ end
 
 end
 end)
+
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local DefaultCursor = "rbxassetid://113818324753294"
+
+local function ApplyCursorEffect(gui)
+    for _, obj in pairs(gui:GetDescendants()) do
+        if obj:IsA("ImageButton") or obj:IsA("TextButton") then
+            obj.MouseEnter:Connect(function()
+                Mouse.Icon = DefaultCursor
+            end)
+            obj.MouseLeave:Connect(function()
+                Mouse.Icon = DefaultCursor
+            end)
+        end
+    end
+end
+
+game.Players.LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
+    ApplyCursorEffect(child)
+end)
+
+ApplyCursorEffect(game.Players.LocalPlayer.PlayerGui)
+ApplyCursorEffect(game:GetService("CoreGui"))
