@@ -7,7 +7,7 @@ local function r(imageObject)
     imageObject.ImageRectSize = Vector2.new(0, 0)
 end
 
-local chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
+local chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"]:FindFirstChild("chat")
 local menuMenu = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Overflow
 local menuClose = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Close
 local rbx = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon
@@ -16,23 +16,9 @@ local players = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.Sett
 local help = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.HelpTab.TabLabel.Icon
 local report = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.ReportAbuseTab.TabLabel.Icon
 local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.CapturesTab.TabLabel.Icon
-local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
 local playerList = game:GetService("CoreGui"):FindFirstChild("PlayerList")
 local checkVNG = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
 local checkEmote = game:GetService("CoreGui").RobloxGui:FindFirstChild("EmotesMenu")
-
-chat.Image = "rbxassetid://98655444538470"
-iconChatHit.MouseButton1Click:Connect(function()
-    local chatBar = game:GetService("CoreGui"):FindFirstChild("ExperienceChat")
-    
-    if chatBar and chatBar.appLayout.chatInputBar.Visible then
-        chat.Image = "rbxassetid://98655444538470"
-chat.Size = UDim2.new(0, 36, 0, 36)
-    else
-        chat.Image = "rbxassetid://136828899568378"
-chat.Size = UDim2.new(0, 25, 0, 25)
-    end
-end)
 
 menuMenu.Image = "rbxassetid://98028586888500"
 menuClose.Image = "rbxassetid://127559608608093"
@@ -82,6 +68,32 @@ r(emoteWeel)
 emoteLine.Image = "rbxassetid://98781576372898"
 emoteSelect.Image = "rbxassetid://135889668421234"
 emoteWeel.Image = "rbxassetid://78361502496826"
+end
+
+if chat then
+local _chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
+_chat.Image = "rbxassetid://98655444538470"
+r(_chat)
+
+local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
+
+iconChatHit.MouseButton1Click:Connect(function()
+    local chatBar = game:GetService("CoreGui"):FindFirstChild("ExperienceChat")
+    
+    if chatBar and chatBar.appLayout.chatInputBar.Visible then
+        _chat.Image = "rbxassetid://98655444538470"
+_chat.Size = UDim2.new(0, 36, 0, 36)
+    else
+        _chat.Image = "rbxassetid://136828899568378"
+_chat.Size = UDim2.new(0, 25, 0, 25)
+    end
+end)
+
+task.spawn(function()
+while wait() do
+r(_chat)
+end
+end)
 end
 
 r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
@@ -176,7 +188,6 @@ task.spawn(function()
 end)
 
 game.RunService.Heartbeat:Connect(function()
-r(chat)
 
 local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
 if gameInvite then
