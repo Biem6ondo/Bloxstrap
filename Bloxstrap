@@ -1,4 +1,6 @@
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684-Build_1", Icon = "rbxassetid://90669214159992", Duration = 10})
+-- close soure in 10/4
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684-Build_2", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
@@ -8,7 +10,7 @@ end
 local chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
 local menuMenu = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Overflow
 local menuClose = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Close
-local rbx = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon 
+local rbx = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon
 local set = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.GameSettingsTab.TabLabel.Icon
 local players = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.PlayersTab.TabLabel.Icon
 local help = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.HelpTab.TabLabel.Icon
@@ -16,6 +18,7 @@ local report = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.Setti
 local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.CapturesTab.TabLabel.Icon
 local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
 local playerList = game:GetService("CoreGui"):FindFirstChild("PlayerList")
+local checkVNG = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
 
 chat.Image = "rbxassetid://98655444538470"
 iconChatHit.MouseButton1Click:Connect(function()
@@ -42,6 +45,11 @@ capture.Image = "rbxassetid://121273610000891"
 if playerList then
 game:GetService("CoreGui").PlayerList.Children.OffsetFrame.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame.DismissButton.imageLabel.Image = "rbxassetid://127559608608093"
 r(game:GetService("CoreGui").PlayerList.Children.OffsetFrame.PlayerScrollList.SizeOffsetFrame.TopRoundedRect.DismissIconFrame.DismissButton.imageLabel)
+end
+
+if checkVNG then
+game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[3]:Destroy()
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Roblox VNG", Text = "Phiên bản này sẽ có lỗi xảy ra.", Icon = "rbxassetid://90669214159992", Duration = 10})
 end
 
 r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
@@ -161,6 +169,33 @@ task.spawn(function()
     end
 end)
 
-while wait() do
+game.RunService.Heartbeat:Connect(function()
 r(chat)
+local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
+if gameInvite then
+game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton.Image = "rbxassetid://127559608608093"
+
+r(game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton)
+
+game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer.SearchButton.Image = "rbxassetid://109233224447276"
+
+r(game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer.SearchButton)
+
+local shareGameInviteLink= game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer:FindFirstChild("ShareGameInviteLink")
+
+if shareGameInviteLink then
+shareGameInviteLink.ImageColor3 = Color3.fromRGB(170, 0, 255)
 end
+
+local mainCanvas = game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.FriendsList.MainCanvas
+
+for _, obj in ipairs(mainCanvas:GetDescendants()) do
+if obj.Name == "Button" then
+obj.ImageColor3 = Color3.fromRGB(170, 0, 255)
+elseif obj.Name == "Text" then
+obj.TextColor3 = Color3.fromRGB(170, 0, 255)
+end
+end
+
+end
+end)
