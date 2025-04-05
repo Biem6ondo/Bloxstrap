@@ -92,6 +92,19 @@ end)
 task.spawn(function()
 while wait() do
 r(_chat)
+
+local checkLeave = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("LeaveGamePage")
+local checkReset = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("ResetCharacter")
+
+if checkLeave then 
+game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer.DontLeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
+game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer.LeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
+
+if checkReset then
+game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer.ResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
+game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer.DontResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
+end
+end
 end
 end)
 end
@@ -187,7 +200,8 @@ task.spawn(function()
     end
 end)
 
-game.RunService.Heartbeat:Connect(function()
+task.spawn(function()
+while wait(0.1) do
 
 local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
 if gameInvite then
@@ -205,6 +219,8 @@ if shareGameInviteLink then
 shareGameInviteLink.ImageColor3 = Color3.fromRGB(170, 0, 255)
 end
 
+local inventory = game:GetService("CoreGui").RobloxGui:FindFirstChild("Backpack")
+
 local mainCanvas = game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.FriendsList.MainCanvas
 
 for _, obj in ipairs(mainCanvas:GetDescendants()) do
@@ -212,9 +228,15 @@ if obj.Name == "Button" then
 obj.ImageColor3 = Color3.fromRGB(170, 0, 255)
 elseif obj.Name == "Text" then
 obj.TextColor3 = Color3.fromRGB(170, 0, 255)
-end
-end
 
+for _, obj in ipairs(game:GetService("CoreGui").RobloxGui.Backpack.Hotbar:GetDescendants()) do
+if obj.Name == "Edge" then
+obj.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+end
+end
+end
+end
+end
 end
 end)
 
