@@ -1,24 +1,35 @@
 -- close source in 10/4
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_3", Icon = "rbxassetid://90669214159992", Duration = 10})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_5", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
     imageObject.ImageRectSize = Vector2.new(0, 0)
 end
 
-local chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"]:FindFirstChild("chat")
-local menuMenu = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Overflow
-local menuClose = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Close
-local rbx = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon
-local set = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.GameSettingsTab.TabLabel.Icon
-local players = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.PlayersTab.TabLabel.Icon
-local help = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.HelpTab.TabLabel.Icon
-local report = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.ReportAbuseTab.TabLabel.Icon
-local capture = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.HubBar.HubBarContainer.CapturesTab.TabLabel.Icon
-local playerList = game:GetService("CoreGui"):FindFirstChild("PlayerList")
-local checkVNG = game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
-local checkEmote = game:GetService("CoreGui").RobloxGui:FindFirstChild("EmotesMenu")
+local C = game:GetService("CoreGui")
+local P = game:GetService("Players")
+local PG = P.LocalPlayer.PlayerGui
+local T = C.TopBarApp.TopBarApp
+local R = C.RobloxGui
+local ST = R.SettingsClippingShield.SettingsShield
+local S = ST.MenuContainer.HubBar.HubBarContainer
+local PV = R.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame
+
+local chat = T.UnibarLeftFrame.UnibarMenu["2"]["3"]:FindFirstChild("chat")
+local menuMenu = T.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Overflow
+local menuClose = T.UnibarLeftFrame.UnibarMenu["2"]["3"].nine_dot.IntegrationIconFrame.IntegrationIcon.Close
+local rbx = T.MenuIconHolder.TriggerPoint:GetChildren()[2].ScalingIcon
+
+local set = S.GameSettingsTab.TabLabel.Icon
+local players = S.PlayersTab.TabLabel.Icon
+local help = S.HelpTab.TabLabel.Icon
+local report = S.ReportAbuseTab.TabLabel.Icon
+local capture = S.CapturesTab.TabLabel.Icon
+
+local playerList = C:FindFirstChild("PlayerList")
+local checkVNG = T.MenuIconHolder.TriggerPoint:FindFirstChild("BadgeOver12")
+local checkEmote = R:FindFirstChild("EmotesMenu")
 
 menuMenu.Image = "rbxassetid://98028586888500"
 menuClose.Image = "rbxassetid://127559608608093"
@@ -30,6 +41,7 @@ report.Image = "rbxassetid://78743340755719"
 capture.Image = "rbxassetid://121273610000891"
 
 if playerList then
+print("[Debug] playerList?")
     local offset = playerList:FindFirstChild("Children") and playerList.Children:FindFirstChild("OffsetFrame")
     local body = playerList:FindFirstChild("Children") and playerList.Children:FindFirstChild("BodyBackground")
     
@@ -56,29 +68,35 @@ if playerList then
 end
 
 if checkVNG then
-game:GetService("CoreGui").TopBarApp.TopBarApp.MenuIconHolder.TriggerPoint:GetChildren()[3]:Destroy()
+print("[Debug] checkVNG: Ok")
+T.MenuIconHolder.TriggerPoint:GetChildren()[3]:Destroy()
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Roblox VNG", Text = "Phiên bản này sẽ có lỗi xảy ra.", Icon = "rbxassetid://90669214159992", Duration = 10})
+else
+warn("[Debug] checkVNG: Fail")
 end
 
 if checkEmote then
-local emoteWeel = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundImage
-local emoteLine = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.Selection.SelectionEffect.SelectedLine
-local emoteSelect = game:GetService("CoreGui").RobloxGui.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundGradient.SelectionGradient.SelectedGradient
+print("[Debug] checkEmote: Ok")
+local emoteWeel = R.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundImage
+local emoteLine = R.EmotesMenu.Children.Main.EmotesWheel.Back.Background.Selection.SelectionEffect.SelectedLine
+local emoteSelect = R.EmotesMenu.Children.Main.EmotesWheel.Back.Background.BackgroundGradient.SelectionGradient.SelectedGradient
 r(emoteWeel)
 emoteLine.Image = "rbxassetid://98781576372898"
 emoteSelect.Image = "rbxassetid://135889668421234"
 emoteWeel.Image = "rbxassetid://78361502496826"
+else
+warn("[Debug] checkEmote: Fail")
 end
 
 if chat then
-local _chat = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
+local _chat = T.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IntegrationIconFrame.IntegrationIcon
 _chat.Image = "rbxassetid://98655444538470"
 r(_chat)
 
-local iconChatHit = game:GetService("CoreGui").TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
+local iconChatHit = T.UnibarLeftFrame.UnibarMenu["2"]["3"].chat.IconHitArea_chat
 
 iconChatHit.MouseButton1Click:Connect(function()
-    local chatBar = game:GetService("CoreGui"):FindFirstChild("ExperienceChat")
+    local chatBar = C:FindFirstChild("ExperienceChat")
     
     if chatBar and chatBar.appLayout.chatInputBar.Visible then
         _chat.Image = "rbxassetid://98655444538470"
@@ -90,27 +108,78 @@ _chat.Size = UDim2.new(0, 25, 0, 25)
 end)
 
 task.spawn(function()
-	while wait() do
+	while task.wait(0.25) do
 		r(_chat)
 
-		local CoreGui = game:GetService("CoreGui")
-		local checkLeave = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("LeaveGamePage")
-		local checkReset = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("ResetCharacter")
+		local checkLeave = PV:FindFirstChild("LeaveGamePage")
+		local checkReset = PV:FindFirstChild("ResetCharacter")
+local checkLeaveButton = ST.MenuContainer.BottomButtonFrame:FindFirstChild("LeaveGameButtonButton")
+local checkInspect = R:FindFirstChild("Container")
+local checkSetting = PV:FindFirstChild("Page")
+
+if checkLeaveButton then
+checkLeaveButton.Border.Color = Color3.fromRGB(170, 0, 255)
+end
 
 		if checkLeave then
-			local leaveFrame = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer
+			local leaveFrame = PV.LeaveGamePage.LeaveGameText.LeaveButtonContainer
 			leaveFrame.DontLeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
 			leaveFrame.LeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
 		end
 
 		if checkReset then
-			local resetFrame = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer
+			local resetFrame = PV.ResetCharacter.ResetCharacterText.ResetButtonContainer
 			resetFrame.ResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
 			resetFrame.DontResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
 		end
 
-		-- Hiệu ứng chuyển màu IntegrationIcon
-		local dotFrame = CoreGui:FindFirstChild("TopBarApp") and CoreGui.TopBarApp:FindFirstChild("TopBarApp") and CoreGui.TopBarApp.TopBarApp:FindFirstChild("UnibarLeftFrame") and CoreGui.TopBarApp.TopBarApp.UnibarLeftFrame:FindFirstChild("UnibarMenu") and CoreGui.TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu:FindFirstChild("SubMenuHost")
+if checkInspect then
+checkInspect.MainContainer.CloseButton.Image = "rbxassetid://127559608608093"
+            for _, obj in ipairs(checkInspect:GetDescendants()) do  
+                if obj:IsA("ImageLabel") and obj.Name == "Corner" then  
+                    obj.ImageColor3 = Color3.new(0, 0, 0) 
+elseif obj:IsA("ImageLabel") and obj.Name == "EquippedFrame" then  
+obj.ImageColor3 = Color3.fromRGB(170, 0, 255)
+                end  
+            end  
+end
+
+if checkSetting then
+    for _, obj in ipairs(checkSetting:GetDescendants()) do
+        if obj:IsA("ImageLabel") then
+            if obj.Name == "LeftButton" or obj.Name == "RightButton" then
+                local isInForbiddenFrame = false
+                local parent = obj.Parent
+                while parent do
+                    if parent.Name == "Background TransparencyFrame" or 
+                       parent.Name == "VolumeFrame" or 
+                       parent.Name == "Graphics QualityFrame" then
+                        isInForbiddenFrame = true
+                        break
+                    end
+                    parent = parent.Parent
+                end
+                if isInForbiddenFrame then
+                    if obj.Name == "LeftButton" then
+                        obj.Image = "rbxassetid://95487778398461"
+                    elseif obj.Name == "RightButton" then
+                        obj.Image = "rbxassetid://94389312748073"
+                    end
+                else
+                    if obj.Name == "LeftButton" then
+                        obj.Image = "rbxassetid://74211155409818"
+                    elseif obj.Name == "RightButton" then
+                        obj.Image = "rbxassetid://97458155273489"
+                    end
+                end
+            elseif obj.Name == "DropDownImage" then
+                obj.Image = "rbxassetid://123809289003397"
+            end
+        end
+    end
+end
+
+		local dotFrame = C:FindFirstChild("TopBarApp") and C.TopBarApp:FindFirstChild("TopBarApp") and T:FindFirstChild("UnibarLeftFrame") and C.TopBarApp.TopBarApp.UnibarLeftFrame:FindFirstChild("UnibarMenu") and T.UnibarLeftFrame.UnibarMenu:FindFirstChild("SubMenuHost")
 		if dotFrame and dotFrame:FindFirstChild("nine_dot") then
 			for _, obj in ipairs(dotFrame.nine_dot:GetDescendants()) do
 				if obj:IsA("ImageLabel") and obj.Name == "IntegrationIcon" and not obj:GetAttribute("ColorChanging") then
@@ -118,11 +187,11 @@ task.spawn(function()
 					local TweenService = game:GetService("TweenService")
 					task.spawn(function()
 						while obj and obj.Parent do
-							local tween1 = TweenService:Create(obj, TweenInfo.new(1, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(200, 100, 255)})
+							local tween1 = TweenService:Create(obj, TweenInfo.new(0.3, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(200, 100, 255)})
 							tween1:Play()
 							tween1.Completed:Wait()
 
-							local tween2 = TweenService:Create(obj, TweenInfo.new(1, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(170, 0, 255)})
+							local tween2 = TweenService:Create(obj, TweenInfo.new(0.3, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(170, 0, 255)})
 							tween2:Play()
 							tween2.Completed:Wait()
 						end
@@ -154,116 +223,106 @@ end)
 
 -- ⭐⭐⭐⭐⭐     Other     ⭐⭐⭐⭐⭐
 
-
 task.spawn(function()
-    while task.wait(0.2) do
-        local CoreGui = game:GetService("CoreGui")
-        local Players = CoreGui:FindFirstChild("RobloxGui") 
-            and CoreGui.RobloxGui:FindFirstChild("SettingsClippingShield")
-            and CoreGui.RobloxGui.SettingsClippingShield:FindFirstChild("SettingsShield")
-            and CoreGui.RobloxGui.SettingsClippingShield.SettingsShield:FindFirstChild("MenuContainer")
-            and CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer:FindFirstChild("PageViewClipper")
-            and CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper:FindFirstChild("PageView")
-            and CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView:FindFirstChild("PageViewInnerFrame")
-            and CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("Players")
+    while task.wait(0.4) do
+        local PlayersFrame = PV:FindFirstChild("Players")
 
-        local BottomButtonFrame = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer:FindFirstChild("BottomButtonFrame")
-        local HubBar = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer:FindFirstChild("HubBar")
+        local BottomButtonFrame = ST.MenuContainer:FindFirstChild("BottomButtonFrame")  
+        local HubBar = ST.MenuContainer:FindFirstChild("HubBar")  
 
-        if Players then
-            for _, obj in ipairs(Players:GetDescendants()) do
-                if obj:IsA("ImageLabel") then
-                    if obj.Name == "InspectButtonImageLabel" then
-                        obj.Image = "rbxassetid://86129874560283"
-                        obj.ScaleType = Enum.ScaleType.Stretch
-                        obj.ImageRectOffset = Vector2.new(0, 0)
-                        obj.ImageRectSize = Vector2.new(0, 0)
-                    elseif obj.Name == "BlockButtonImageLabel" then
-                        obj.Image = "rbxassetid://80743984746858"
-                        obj.ScaleType = Enum.ScaleType.Stretch
-                        obj.ImageRectOffset = Vector2.new(0, 0)
-                        obj.ImageRectSize = Vector2.new(0, 0)
-                    elseif obj.Name == "ReportPlayerImageLabel" then
-                        obj.Image = "rbxassetid://103113148000709"
-                        obj.ScaleType = Enum.ScaleType.Stretch
-                        obj.ImageRectOffset = Vector2.new(0, 0)
-                        obj.ImageRectSize = Vector2.new(0, 0)
-                    end
-                elseif obj:IsA("ImageButton") then
-                    if obj.Name == "Inspect" or obj.Name == "BlockButton" or obj.Name == "ReportPlayer" then
-                        obj.BackgroundTransparency = 1
-                        obj.ImageTransparency = 1
-                    end
-                end
+        if PlayersFrame then  
+            for _, obj in ipairs(PlayersFrame:GetDescendants()) do  
+                if obj:IsA("ImageLabel") then  
+                    if obj.Name == "InspectButtonImageLabel" then  
+                        obj.Image = "rbxassetid://86129874560283"  
+                        obj.ScaleType = Enum.ScaleType.Stretch  
+                        obj.ImageRectOffset = Vector2.new(0, 0)  
+                        obj.ImageRectSize = Vector2.new(0, 0)  
+                    elseif obj.Name == "BlockButtonImageLabel" then  
+                        obj.Image = "rbxassetid://80743984746858"  
+                        obj.ScaleType = Enum.ScaleType.Stretch  
+                        obj.ImageRectOffset = Vector2.new(0, 0)  
+                        obj.ImageRectSize = Vector2.new(0, 0)  
+                    elseif obj.Name == "ReportPlayerImageLabel" then  
+                        obj.Image = "rbxassetid://103113148000709"  
+                        obj.ScaleType = Enum.ScaleType.Stretch  
+                        obj.ImageRectOffset = Vector2.new(0, 0)  
+                        obj.ImageRectSize = Vector2.new(0, 0)  
+                    end  
+                elseif obj:IsA("ImageButton") then  
+                    if obj.Name == "Inspect" or obj.Name == "BlockButton" or obj.Name == "ReportPlayer" then  
+                        obj.BackgroundTransparency = 1  
+                        obj.ImageTransparency = 1  
+                    end  
+                end  
 
-                if obj:IsA("UIStroke") and obj.Name == "Border" then
-                    obj.Color = Color3.fromRGB(170, 0, 255)
-                end
+                if obj:IsA("UIStroke") and obj.Name == "Border" then  
+                    obj.Color = Color3.fromRGB(170, 0, 255)  
+                end  
 
-                if obj:IsA("TextLabel") then
-                    if obj.Name == "NameLabel" or obj.Name == "DisplayNameLabel" or obj.Name == "TextLabel" then
-                        obj.TextColor3 = Color3.fromRGB(150, 0, 200)
-                    end
-                end
-            end
-        end
+                if obj:IsA("TextLabel") then  
+                    if obj.Name == "NameLabel" or obj.Name == "DisplayNameLabel" or obj.Name == "TextLabel" then  
+                        obj.TextColor3 = Color3.fromRGB(150, 0, 200)  
+                    end  
+                end  
+            end  
+        end  
 
-        if BottomButtonFrame then
-            for _, obj in ipairs(BottomButtonFrame:GetDescendants()) do
-                if obj:IsA("UIStroke") and obj.Name == "Border" then
-                    obj.Color = Color3.fromRGB(170, 0, 255)
-                end
-            end
-        end
+        if BottomButtonFrame then  
+            for _, obj in ipairs(BottomButtonFrame:GetDescendants()) do  
+                if obj:IsA("UIStroke") and obj.Name == "Border" then  
+                    obj.Color = Color3.fromRGB(170, 0, 255)  
+                end  
+            end  
+        end  
 
-        if HubBar then
-            for _, obj in ipairs(HubBar:GetDescendants()) do
-                if obj.Name == "TabSelection" then
-                    obj.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
-                end
-            end
-        end
+        if HubBar then  
+            for _, obj in ipairs(HubBar:GetDescendants()) do  
+                if obj.Name == "TabSelection" then  
+                    obj.BackgroundColor3 = Color3.fromRGB(170, 0, 255)  
+                end  
+            end  
+        end  
     end
 end)
 
 task.spawn(function()
-while wait(0.1) do
+    while wait(0.1) do
+        local gameInvite = C.GameInvite:FindFirstChild("GameInviteModal")
+        if gameInvite then
+            local closeBtn = gameInvite.ModalWindowContainer.GameInviteModalContainer.GameInviteContent
+                .TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton
+            closeBtn.Image = "rbxassetid://127559608608093"
+            r(closeBtn)
 
-local gameInvite = game:GetService("CoreGui").GameInvite:FindFirstChild("GameInviteModal")
-if gameInvite then
-game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton.Image = "rbxassetid://127559608608093"
+            local searchFriend = gameInvite.ModalWindowContainer.GameInviteModalContainer.GameInviteContent
+                .TitleContainer.GameInviteTitle.RightActionContainer:FindFirstChild("SearchButton")
+            if searchFriend then
+                searchFriend.Image = "rbxassetid://109233224447276"
+                r(searchFriend)
+            end
 
-r(game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.LeftActionContainer.CloseButton)
+            local shareGameInviteLink = gameInvite.ModalWindowContainer.GameInviteModalContainer.GameInviteContent
+                .TitleContainer.GameInviteTitle.RightActionContainer:FindFirstChild("ShareGameInviteLink")
+            if shareGameInviteLink then
+                shareGameInviteLink.ImageColor3 = Color3.fromRGB(170, 0, 255)
+            end
 
-game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer.SearchButton.Image = "rbxassetid://109233224447276"
-
-r(game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer.SearchButton)
-
-local shareGameInviteLink= game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.TitleContainer.GameInviteTitle.RightActionContainer:FindFirstChild("ShareGameInviteLink")
-
-if shareGameInviteLink then
-shareGameInviteLink.ImageColor3 = Color3.fromRGB(170, 0, 255)
-end
-
-local inventory = game:GetService("CoreGui").RobloxGui:FindFirstChild("Backpack")
-
-local mainCanvas = game:GetService("CoreGui").GameInvite.GameInviteModal.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.FriendsList.MainCanvas
-
-for _, obj in ipairs(mainCanvas:GetDescendants()) do
-if obj.Name == "Button" then
-obj.ImageColor3 = Color3.fromRGB(170, 0, 255)
-elseif obj.Name == "Text" then
-obj.TextColor3 = Color3.fromRGB(170, 0, 255)
-
-for _, obj in ipairs(game:GetService("CoreGui").RobloxGui.Backpack.Hotbar:GetDescendants()) do
-if obj.Name == "Edge" then
-obj.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
-end
-end
-end
-end
-end
-end
+            local mainCanvas = gameInvite.ModalWindowContainer.GameInviteModalContainer.GameInviteContent.FriendsList.MainCanvas
+            for _, obj in ipairs(mainCanvas:GetDescendants()) do
+                if obj.Name == "Button" then
+                    obj.ImageColor3 = Color3.fromRGB(170, 0, 255)
+                elseif obj.Name == "Text" then
+                    obj.TextColor3 = Color3.fromRGB(170, 0, 255)
+                    for _, h in ipairs(R.Backpack.Hotbar:GetDescendants()) do
+                        if h.Name == "Edge" then
+                            h.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+                        end
+                    end
+                end
+            end
+        end
+    end
 end)
 
 local Mouse = game.Players.LocalPlayer:GetMouse()
@@ -286,5 +345,5 @@ game.Players.LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
     ApplyCursorEffect(child)
 end)
 
-ApplyCursorEffect(game.Players.LocalPlayer.PlayerGui)
-ApplyCursorEffect(game:GetService("CoreGui"))
+ApplyCursorEffect(PG)
+ApplyCursorEffect(C)
