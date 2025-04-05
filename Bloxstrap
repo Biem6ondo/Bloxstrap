@@ -90,23 +90,49 @@ _chat.Size = UDim2.new(0, 25, 0, 25)
 end)
 
 task.spawn(function()
-while wait() do
-r(_chat)
+	while wait() do
+		r(_chat)
 
-local checkLeave = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("LeaveGamePage")
-local checkReset = game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("ResetCharacter")
+		local CoreGui = game:GetService("CoreGui")
+		local checkLeave = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("LeaveGamePage")
+		local checkReset = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame:FindFirstChild("ResetCharacter")
 
-if checkLeave then 
-game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer.DontLeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
-game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer.LeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
+		if checkLeave then
+			local leaveFrame = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.LeaveGamePage.LeaveGameText.LeaveButtonContainer
+			leaveFrame.DontLeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
+			leaveFrame.LeaveGameButton.Border.Color = Color3.fromRGB(170, 0, 255)
+		end
 
-if checkReset then
-game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer.ResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
-game:GetService("CoreGui").RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer.DontResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
-end
-end
-end
+		if checkReset then
+			local resetFrame = CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.PageViewClipper.PageView.PageViewInnerFrame.ResetCharacter.ResetCharacterText.ResetButtonContainer
+			resetFrame.ResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
+			resetFrame.DontResetCharacterButton.Border.Color = Color3.fromRGB(170, 0, 255)
+		end
+
+		-- Hiệu ứng chuyển màu IntegrationIcon
+		local dotFrame = CoreGui:FindFirstChild("TopBarApp") and CoreGui.TopBarApp:FindFirstChild("TopBarApp") and CoreGui.TopBarApp.TopBarApp:FindFirstChild("UnibarLeftFrame") and CoreGui.TopBarApp.TopBarApp.UnibarLeftFrame:FindFirstChild("UnibarMenu") and CoreGui.TopBarApp.TopBarApp.UnibarLeftFrame.UnibarMenu:FindFirstChild("SubMenuHost")
+		if dotFrame and dotFrame:FindFirstChild("nine_dot") then
+			for _, obj in ipairs(dotFrame.nine_dot:GetDescendants()) do
+				if obj:IsA("ImageLabel") and obj.Name == "IntegrationIcon" and not obj:GetAttribute("ColorChanging") then
+					obj:SetAttribute("ColorChanging", true)
+					local TweenService = game:GetService("TweenService")
+					task.spawn(function()
+						while obj and obj.Parent do
+							local tween1 = TweenService:Create(obj, TweenInfo.new(1, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(200, 100, 255)})
+							tween1:Play()
+							tween1.Completed:Wait()
+
+							local tween2 = TweenService:Create(obj, TweenInfo.new(1, Enum.EasingStyle.Linear), {ImageColor3 = Color3.fromRGB(170, 0, 255)})
+							tween2:Play()
+							tween2.Completed:Wait()
+						end
+					end)
+				end
+			end
+		end
+	end
 end)
+
 end
 
 r(menuMenu) r(menuClose) r(rbx) r(set) r(players) r(help) r(report) r(capture)
