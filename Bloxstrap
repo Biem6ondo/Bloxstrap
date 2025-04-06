@@ -1,6 +1,6 @@
 -- close source in 10/4
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_5", Icon = "rbxassetid://90669214159992", Duration = 10})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Version", Text = "Unfinished!\nv6.665.684_Build_4", Icon = "rbxassetid://90669214159992", Duration = 10})
 
 local function r(imageObject)
     imageObject.ImageRectOffset = Vector2.new(0, 0)
@@ -116,6 +116,7 @@ task.spawn(function()
 local checkLeaveButton = ST.MenuContainer.BottomButtonFrame:FindFirstChild("LeaveGameButtonButton")
 local checkInspect = R:FindFirstChild("Container")
 local checkSetting = PV:FindFirstChild("Page")
+local checkgChat = C.ExperienceChat
 
 if checkLeaveButton then
 checkLeaveButton.Border.Color = Color3.fromRGB(170, 0, 255)
@@ -175,6 +176,20 @@ if checkSetting then
             elseif obj.Name == "DropDownImage" then
                 obj.Image = "rbxassetid://123809289003397"
             end
+        end
+    end
+end
+
+if checkgChat then
+    local checkMainChat = checkgChat:FindFirstChild("appLayout") and checkgChat.appLayout:FindFirstChild("chatWindow")
+    if checkMainChat then
+        local topBanner = checkMainChat:FindFirstChild("TopBanner")
+        local dotMenu = topBanner and topBanner:FindFirstChild("DotMenu")
+        local imageLabel = dotMenu and dotMenu:FindFirstChild("imageLabel")
+        if imageLabel then
+            imageLabel.Image = "rbxassetid://71408354786707"
+imageLabel.Size = UDim2.new(0, 30, 0, 30)
+r(imageLabel)
         end
     end
 end
